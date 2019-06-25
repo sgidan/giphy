@@ -52,22 +52,45 @@ function displayGif(button) {
 
             var results = response.data;
 
-            results.forEach(function (element) {
+            results.forEach(function (element, index) {
                 var gifDiv = $('<div>');
                 var animalImage = $('<img>');
-                var rating = results.rating
+                animalImage.addClass("gif-image");
+                animalImage.attr(`data-id`, index);
+                animalImage.attr("data-state", "still");
+                animalImage.attr('data-still', element.images.fixed_width_still.url);
+                animalImage.attr('data-animated', results[index].images.fixed_width.url);
+                var rating = element.rating
                 var p = $('<p>').text('Rating: ' + rating);
-                animalImage.attr('src', element.images.fixed_height.url);
+                animalImage.attr('src', element.images.fixed_width_still.url);
                 gifDiv.append(p);
                 gifDiv.append(animalImage);
                 $('#gif-here').prepend(gifDiv);
 
-            })
+            });
 
         });
 
+    $("#gif-here").on("click", ".gif-image", function () {
+        // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+        var state = $(this).attr("data-state");
+        var imgIndex = parseInt($(this).attr('data-id'));
 
+        console.log(imgIndex);
+
+
+        if (state === "still") {
+            $(this).attr("src", $(this).attr('data-animated'));
+            $(this).attr("data-state", "animate");
+        } else {
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still");
+
+        }
+    });
 }
+
+
 $("#add-animal").on("click", function (event) {
     event.preventDefault();
     // This line of code will grab the input from the textbox
@@ -78,6 +101,6 @@ $("#add-animal").on("click", function (event) {
 
     // Calling renderButtons which handles the processing of our movie array
     renderButtons();
-    
+
 });
 

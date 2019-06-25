@@ -1,0 +1,46 @@
+#animal-form{
+    float:right;
+}
+
+button{
+    border-radius: 8px;
+    display: inline-block;
+    margin: 3px;
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    padding:4px;
+}
+    
+.container{
+    padding: 30px;
+   
+
+}
+body{
+    background-color: rgb(218, 218, 218);
+}
+#gif-here{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+img{
+    margin:10px;
+}
+
+#add-animal{
+   
+    border-radius: 8px;
+    display: inline-block;
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    padding:4px;
+
+}
+
+#animal-let{
+    font-size: 18px;
+    font-weight: bold;
+}
